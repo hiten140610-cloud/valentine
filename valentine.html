@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be My Valentine? 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffe6f0, #fff);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Main box */
+.box {
+    position: relative;
+    z-index: 10;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    width: 90%;
+    max-width: 420px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+h1 {
+    color: #ff4d88;
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4d88;
+    color: white;
+}
+
+.no {
+    background: #ffd6e6;
+    color: #ff4d88;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Gift box */
+.gift {
+    width: 150px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+/* Cat popup */
+.cat {
+    width: 220px;
+    margin-top: 15px;
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Hearts -->
+<script>
+for (let i = 0; i < 30; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+    heart.innerHTML = ["💖","💗","💛","🤍"][Math.floor(Math.random()*4)];
+    document.body.appendChild(heart);
+}
+</script>
+
+<div class="box" id="questionBox">
+    <h1 id="questionText">Will You Be My Valentine? 💖</h1>
+    <div class="buttons">
+        <button class="yes" onclick="yesClick()">Yes 💕</button>
+        <button class="no" onclick="noClick()">No 😒</button>
+    </div>
+</div>
+
+<div class="box hidden" id="loveBox">
+    <h1>YAYYYY 🥰💞</h1>
+    <p>You just made my heart smile ❤️</p>
+
+    <img src="https://i.imgur.com/2WZtOD6.png" class="gift" onclick="openGift()">
+
+    <div id="catBox"></div>
+
+    <audio id="song">
+        <source src="https://cdn.pixabay.com/audio/2023/03/30/audio_6f5c2bb5b1.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+function noClick() {
+    const text = document.getElementById("questionText");
+    text.innerHTML += "<br>Will You Be My Valentine? 💖";
+}
+
+function yesClick() {
+    document.getElementById("questionBox").classList.add("hidden");
+    document.getElementById("loveBox").classList.remove("hidden");
+}
+
+function openGift() {
+    document.getElementById("catBox").innerHTML =
+        '<img src="https://media.tenor.com/8F7K9sQ3Q7kAAAAC/cute-cat-love.gif" class="cat">';
+    document.getElementById("song").play();
+}
+</script>
+
+</body>
+</html>
